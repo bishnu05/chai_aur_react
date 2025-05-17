@@ -1,4 +1,4 @@
- <h3>Password Generator app link</h3> - genmypassword.vercel.app
+ <h3>Password Generator app link</h3> - https://genmypassword.vercel.app/
 <br/>
 <h3>Currency Convertor app link</h3> - https://xchangezone.vercel.app
 <br/>
