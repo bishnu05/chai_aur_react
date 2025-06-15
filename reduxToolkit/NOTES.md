@@ -17,4 +17,5 @@ reducer:todoReducer
 10.just we create two files addTodo & TodosList.
 11. just we write the addTodo functionlity in the AddTodo.js file.
 12. Dispatch reducers ko use karte huye store ke ader value me changes karte hain.
+13. when we use callback -> jab imideate execute karna nhi hai tab humko callback lagana padega, warna woh imedeate execute ho jayega,
 
