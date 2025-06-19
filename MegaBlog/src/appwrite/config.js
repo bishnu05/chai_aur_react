@@ -76,19 +76,46 @@ export class Service {
     }
   }
 
-   async getPosts(queries = [Query.equal("status", "active")]) {
-     try {
-        return await this.databases.listDocuments(
-          conf.appwriteDatabaseId,
-          conf.appwriteCollectionId,
-          queries,
-        );
-     } catch (error) {
-        console.log("Error fetching posts:", error);
-        throw error;
-        return false;
-     }
-   }
+  async getPosts(queries = [Query.equal("status", "active")]) {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        queries
+      );
+    } catch (error) {
+      console.log("Error fetching posts:", error);
+      return false;
+    }
+  }
+
+  async uploadFile(file) {
+    try {
+      const response = await this.bucket.createFile(
+        conf.appwriteBucketId,
+        ID.unique(),
+        file
+      );
+      return response;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      return false;
+    }
+  }
+
+  async deleteFile(fileId) {
+    try {
+      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+      return true;
+    } catch (error) {
+      console.error("Error deleting file:", error);
+      return false;
+    }
+  }
+
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+  }
 }
 
 const service = new Service();
